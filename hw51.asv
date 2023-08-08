@@ -1,0 +1,19 @@
+function [DFT] = hw51(x)
+
+M = length(x);
+
+if M == 1 % case 1: the DFT of a single point is itself
+    X = x;
+else % case 2: FFT algorithm                                                                                                                       
+    xeven = x(1:2:end); % extract even-indexed samples
+    xodd = x(2:2:end); % extract odd-indexed samples
+    Xeven = hw51(xeven); % compute DFT of even-indexed samples
+    Xodd = hw51(xodd); % compute DFT of odd-indexed samples
+    W = exp(-2*pi*1j/M).^(0:M-1); 
+    X = [Xeven + W(1:M/2).*Xodd, Xeven + W(M/2+1:M).*Xodd]; % combine results
+end
+
+% round() function
+DFT = round(X, 1);
+
+end

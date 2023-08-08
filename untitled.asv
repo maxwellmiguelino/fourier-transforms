@@ -1,0 +1,21 @@
+[y1, Fs1] = audioread('guitar1.wav');
+y1_sampled = y1(1:1000);
+Y1 = fft(y1_sampled);
+magY1 = abs(Y1);
+
+[y2, Fs2] = audioread('guitar2.wav');
+y2_sampled = y2(1:1000);
+Y2 = fft(y2_sampled);
+magY2 = abs(Y2);
+
+[y3, Fs3] = audioread('guitar3.wav');
+y3_sampled = y3(1:1000);
+Y3 = fft(y3_sampled);
+magY3 = abs(Y3);
+
+plot(magY1);
+hold on;
+plot(magY2);
+plot(magY3);
+title('Magnitude Spectrum of Three Audio Files');
+legend('guitar1', 'guitar2', 'guitar3');
